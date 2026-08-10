@@ -26,21 +26,15 @@ def get_similarity(text1, text2):
 
     embedding_model = get_model()
 
-    embedding1 = embedding_model.encode(
-        text1,
-        convert_to_tensor=True
-    )
-
-    embedding2 = embedding_model.encode(
-        text2,
-        convert_to_tensor=True
-    )
+    embedding1 = embedding_model.encode(text1, convert_to_tensor=True)
+    embedding2 = embedding_model.encode(text2, convert_to_tensor=True)
 
     from sentence_transformers import util
-
-    similarity_score = util.cos_sim(
-        embedding1,
-        embedding2
-    )
+    similarity_score = util.cos_sim(embedding1, embedding2)
 
     return float(similarity_score.item())
+
+
+# Backward compatibility
+def calculate_similarity(reference_answer, student_answer):
+    return get_similarity(reference_answer, student_answer)
