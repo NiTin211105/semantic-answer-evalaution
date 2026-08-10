@@ -1,10 +1,8 @@
 """
 OCR Module — Semantic AI Based Short Answer Evaluation
-Extracts text from handwritten/typed answer images using EasyOCR.
 """
 
 import os
-import easyocr
 
 reader = None
 
@@ -13,16 +11,13 @@ def get_reader():
     global reader
 
     if reader is None:
+        import easyocr
         reader = easyocr.Reader(["en"], gpu=False)
 
     return reader
 
 
 def extract_text(image_path):
-    """
-    Takes an image file path and returns extracted text.
-    """
-
     if not os.path.exists(image_path):
         raise FileNotFoundError(f"Image not found: {image_path}")
 
