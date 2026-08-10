@@ -2,7 +2,6 @@ import os
 import tempfile
 from flask import Flask, request, render_template_string
 
-from main import evaluate_answer
 from question_loader import load_questions
 
 app = Flask(__name__)
@@ -105,6 +104,7 @@ def index():
         elif not question_id:
             error = "Please select a question."
         else:
+          from main import evaluate_answer
             suffix = os.path.splitext(uploaded.filename)[1].lower() or ".jpg"
             fd, path = tempfile.mkstemp(suffix=suffix)
             os.close(fd)
