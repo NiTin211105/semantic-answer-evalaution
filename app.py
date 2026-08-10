@@ -96,6 +96,7 @@ def index():
     error = None
 
     if request.method == "POST":
+      from main import evaluate_answer
         uploaded = request.files.get("image")
         question_id = request.form.get("question_id")
 
