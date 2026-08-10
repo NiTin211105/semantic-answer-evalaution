@@ -96,26 +96,30 @@ def index():
     error = None
 
     if request.method == "POST":
-      from main import evaluate_answer
         uploaded = request.files.get("image")
         question_id = request.form.get("question_id")
 
         if not uploaded or not uploaded.filename:
             error = "Please upload an answer image."
+
         elif not question_id:
             error = "Please select a question."
+
         else:
-          from main import evaluate_answer
+            from main import evaluate_answer
+
             suffix = os.path.splitext(uploaded.filename)[1].lower() or ".jpg"
             fd, path = tempfile.mkstemp(suffix=suffix)
             os.close(fd)
+
             try:
                 uploaded.save(path)
                 result = evaluate_answer(path, question_id)
+
             except Exception as exc:
                 error = f"Evaluation failed: {exc}"
+
             finally:
-                # main.py creates a *_cleaned.jpg beside the uploaded file
                 for p in (path, os.path.splitext(path)[0] + "_cleaned.jpg"):
                     try:
                         os.remove(p)
