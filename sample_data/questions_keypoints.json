@@ -1,0 +1,111 @@
+{
+  "questions": [
+    {
+      "question_id": "Q1",
+      "question_text": "Explain the process of photosynthesis.",
+      "key_points": [
+        {"point_id": "P1", "point_text": "Plants use sunlight as an energy source", "weight": 1},
+        {"point_id": "P2", "point_text": "Carbon dioxide and water are used as raw materials", "weight": 1},
+        {"point_id": "P3", "point_text": "The process produces glucose and oxygen", "weight": 1},
+        {"point_id": "P4", "point_text": "Photosynthesis occurs in the chloroplasts", "weight": 1}
+      ],
+      "total_marks": 4
+    },
+    {
+      "question_id": "Q2",
+      "question_text": "What is Newton's First Law of Motion?",
+      "key_points": [
+        {"point_id": "P1", "point_text": "An object at rest stays at rest unless acted upon by a force", "weight": 1},
+        {"point_id": "P2", "point_text": "An object in motion stays in motion unless acted upon by a force", "weight": 1},
+        {"point_id": "P3", "point_text": "This is also known as the law of inertia", "weight": 1}
+      ],
+      "total_marks": 3
+    },
+    {
+      "question_id": "Q3",
+      "question_text": "Explain the water cycle.",
+      "key_points": [
+        {"point_id": "P1", "point_text": "Water evaporates from oceans and rivers due to heat", "weight": 1},
+        {"point_id": "P2", "point_text": "Water vapor condenses into clouds", "weight": 1},
+        {"point_id": "P3", "point_text": "Precipitation falls back to earth as rain or snow", "weight": 1},
+        {"point_id": "P4", "point_text": "Water collects back into rivers, lakes, and oceans, repeating the cycle", "weight": 1}
+      ],
+      "total_marks": 4
+    },
+    {
+      "question_id": "Q4",
+      "question_text": "What are the states of matter?",
+      "key_points": [
+        {"point_id": "P1", "point_text": "Solid has a fixed shape and fixed volume", "weight": 1},
+        {"point_id": "P2", "point_text": "Liquid has a fixed volume but takes the shape of its container", "weight": 1},
+        {"point_id": "P3", "point_text": "Gas has neither fixed shape nor fixed volume", "weight": 1},
+        {"point_id": "P4", "point_text": "Matter can change from one state to another through heating or cooling", "weight": 1}
+      ],
+      "total_marks": 4
+    },
+    {
+      "question_id": "Q5",
+      "question_text": "Explain Ohm's Law.",
+      "key_points": [
+        {"point_id": "P1", "point_text": "Voltage is directly proportional to current, provided temperature remains constant", "weight": 1},
+        {"point_id": "P2", "point_text": "The formula is V equals I multiplied by R", "weight": 1},
+        {"point_id": "P3", "point_text": "R represents the resistance of the conductor", "weight": 1}
+      ],
+      "total_marks": 3
+    },
+    {
+      "question_id": "Q6",
+      "question_text": "What is the difference between an acid and a base?",
+      "key_points": [
+        {"point_id": "P1", "point_text": "Acids release hydrogen ions in water and have a pH less than 7", "weight": 1},
+        {"point_id": "P2", "point_text": "Bases release hydroxide ions in water and have a pH greater than 7", "weight": 1},
+        {"point_id": "P3", "point_text": "Acids turn blue litmus paper red, bases turn red litmus paper blue", "weight": 1}
+      ],
+      "total_marks": 3
+    },
+    {
+      "question_id": "Q7",
+      "question_text": "Explain the human digestive system in brief.",
+      "key_points": [
+        {"point_id": "P1", "point_text": "Digestion begins in the mouth with the help of saliva", "weight": 1},
+        {"point_id": "P2", "point_text": "Food travels through the esophagus into the stomach", "weight": 1},
+        {"point_id": "P3", "point_text": "The stomach uses acid and enzymes to break down food further", "weight": 1},
+        {"point_id": "P4", "point_text": "Nutrients are absorbed mainly in the small intestine", "weight": 1},
+        {"point_id": "P5", "point_text": "Waste material is eliminated through the large intestine", "weight": 1}
+      ],
+      "total_marks": 5
+    },
+    {
+      "question_id": "Q8",
+      "question_text": "What is the difference between renewable and non-renewable energy sources?",
+      "key_points": [
+        {"point_id": "P1", "point_text": "Renewable energy sources can be replenished naturally over a short time", "weight": 1},
+        {"point_id": "P2", "point_text": "Non-renewable sources take millions of years to form and are limited", "weight": 1},
+        {"point_id": "P3", "point_text": "Examples of renewable sources include solar, wind, and hydro power", "weight": 1},
+        {"point_id": "P4", "point_text": "Examples of non-renewable sources include coal, petroleum, and natural gas", "weight": 1}
+      ],
+      "total_marks": 4
+    },
+    {
+      "question_id": "Q9",
+      "question_text": "Explain the structure of an atom.",
+      "key_points": [
+        {"point_id": "P1", "point_text": "An atom consists of a nucleus at the center", "weight": 1},
+        {"point_id": "P2", "point_text": "The nucleus contains protons and neutrons", "weight": 1},
+        {"point_id": "P3", "point_text": "Electrons revolve around the nucleus in shells or orbits", "weight": 1},
+        {"point_id": "P4", "point_text": "Protons are positively charged and electrons are negatively charged", "weight": 1}
+      ],
+      "total_marks": 4
+    },
+    {
+      "question_id": "Q10",
+      "question_text": "What is the difference between mass and weight?",
+      "key_points": [
+        {"point_id": "P1", "point_text": "Mass is the amount of matter in an object and remains constant everywhere", "weight": 1},
+        {"point_id": "P2", "point_text": "Weight is the force of gravity acting on an object and can change with location", "weight": 1},
+        {"point_id": "P3", "point_text": "Mass is measured in kilograms while weight is measured in newtons", "weight": 1}
+      ],
+      "total_marks": 3
+    }
+  ]
+}
