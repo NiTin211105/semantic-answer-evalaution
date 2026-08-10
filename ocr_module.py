@@ -28,7 +28,7 @@ def extract_text(image_path):
     return " ".join(result)
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     test_images = ["sample_images/2_cleaned.jpg"]
 
     for img in test_images:
