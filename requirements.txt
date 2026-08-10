@@ -3,4 +3,4 @@ gunicorn==23.0.0
 easyocr==1.7.2
 opencv-python-headless==4.10.0.84
 sentence-transformers==5.0.0
-torch==2.7.1
+torch==2.13.0
