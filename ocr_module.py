@@ -13,14 +13,14 @@ def get_reader():
     global reader
 
     if reader is None:
-        reader = easyocr.Reader(['en'], gpu=False)
+        reader = easyocr.Reader(["en"], gpu=False)
 
     return reader
 
 
 def extract_text(image_path):
     """
-    Takes an image file path, returns the extracted text as a string.
+    Takes an image file path and returns extracted text.
     """
 
     if not os.path.exists(image_path):
@@ -30,12 +30,9 @@ def extract_text(image_path):
 
     result = ocr_reader.readtext(image_path, detail=0)
 
-    extracted_text = " ".join(result)
-
-    return extracted_text
+    return " ".join(result)
 
 
-# Quick test when running this file directly
 if _name_ == "_main_":
     test_images = ["sample_images/2_cleaned.jpg"]
 
