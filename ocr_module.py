@@ -63,7 +63,7 @@ Preserve the wording and meaning as accurately as possible.
 
     url = (
         "https://generativelanguage.googleapis.com/v1beta/"
-        "models/gemini-2.5-flash:generateContent"
+        "models/gemini-2.5-flash-lite:generateContent"
         f"?key={api_key}"
     )
 
