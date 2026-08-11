@@ -1,39 +1,85 @@
 """
 OCR Module — Semantic AI Based Short Answer Evaluation
+Uses Gemini Vision for OCR.
 """
 
 import os
-
-reader = None
-
-
-def get_reader():
-    global reader
-
-    if reader is None:
-        import easyocr
-        reader = easyocr.Reader(["en"], gpu=False)
-
-    return reader
+import base64
+import json
+import urllib.request
 
 
 def extract_text(image_path):
     if not os.path.exists(image_path):
         raise FileNotFoundError(f"Image not found: {image_path}")
 
-    ocr_reader = get_reader()
-    result = ocr_reader.readtext(image_path, detail=0)
+    api_key = os.environ.get("GEMINI_API_KEY")
 
-    return " ".join(result)
+    if not api_key:
+        raise RuntimeError("GEMINI_API_KEY environment variable is not set.")
 
+    with open(image_path, "rb") as f:
+        image_data = base64.b64encode(f.read()).decode("utf-8")
 
-if __name__ == "__main__":
-    test_images = ["sample_images/2_cleaned.jpg"]
+    extension = os.path.splitext(image_path)[1].lower()
 
-    for img in test_images:
-        try:
-            text = extract_text(img)
-            print(f"\n===== {img} =====")
-            print(text)
-        except FileNotFoundError as e:
-            print(e)
+    mime_types = {
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".png": "image/png",
+        ".webp": "image/webp"
+    }
+
+    mime_type = mime_types.get(extension, "image/jpeg")
+
+    prompt = """
+Extract ONLY the student's written answer from this image.
+
+The image may contain handwritten or typed text.
+
+Return ONLY the extracted answer text.
+Do not explain the answer.
+Do not add comments.
+Do not use markdown.
+Preserve the wording and meaning as accurately as possible.
+"""
+
+    payload = {
+        "contents": [
+            {
+                "parts": [
+                    {"text": prompt},
+                    {
+                        "inline_data": {
+                            "mime_type": mime_type,
+                            "data": image_data
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+
+    url = (
+        "https://generativelanguage.googleapis.com/v1beta/"
+        "models/gemini-2.5-flash:generateContent"
+        f"?key={api_key}"
+    )
+
+    request = urllib.request.Request(
+        url,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+        method="POST"
+    )
+
+    try:
+        with urllib.request.urlopen(request, timeout=60) as response:
+            result = json.loads(response.read().decode("utf-8"))
+    except Exception as e:
+        raise RuntimeError(f"OCR API request failed: {e}")
+
+    try:
+        return result["candidates"][0]["content"]["parts"][0]["text"].strip()
+    except (KeyError, IndexError, TypeError):
+        raise RuntimeError(f"Unexpected OCR API response: {result}")
