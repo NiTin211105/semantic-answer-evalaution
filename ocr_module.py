@@ -77,16 +77,18 @@ Preserve the wording and meaning as accurately as possible.
     try:
         with urllib.request.urlopen(request, timeout=60) as response:
             result = json.loads(response.read().decode("utf-8"))
-            except urllib.error.HTTPError as e:
-    error_body = e.read().decode("utf-8", errors="replace")
-    raise RuntimeError(
-        f"Gemini API HTTP {e.code}: {error_body}"
-    )
 
-except Exception as e:
-    raise RuntimeError(f"OCR API request failed: {e}")
+    except urllib.error.HTTPError as e:
+        error_body = e.read().decode("utf-8", errors="replace")
+        raise RuntimeError(
+            f"Gemini API HTTP {e.code}: {error_body}"
+        )
+
+    except Exception as e:
+        raise RuntimeError(f"OCR API request failed: {e}")
 
     try:
         return result["candidates"][0]["content"]["parts"][0]["text"].strip()
+
     except (KeyError, IndexError, TypeError):
         raise RuntimeError(f"Unexpected OCR API response: {result}")
