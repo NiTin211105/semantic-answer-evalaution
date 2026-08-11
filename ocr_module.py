@@ -22,12 +22,12 @@ def extract_text(image_path):
         raise FileNotFoundError(f"Image not found: {image_path}")
 
     ocr_reader = get_reader()
-
     result = ocr_reader.readtext(image_path, detail=0)
+
     return " ".join(result)
 
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     test_images = ["sample_images/2_cleaned.jpg"]
 
     for img in test_images:
