@@ -7,7 +7,7 @@ import types
 
 # Vercel packaging workaround for scikit-image lazy loading
 try:
-    import lazy_loader
+    
     original_attach_stub = lazy_loader.attach_stub
 
     def safe_attach_stub(package_name, filename, *args, **kwargs):
@@ -18,7 +18,6 @@ try:
                 return {}, lambda: [], []
             raise
 
-    lazy_loader.attach_stub = safe_attach_stub
 except Exception:
     pass
 
@@ -26,10 +25,33 @@ reader = None
 
 def get_reader():
     global reader
+if reader is None:
+    import sys
+    import types
+    import cv2
 
-    if reader is None:
-        import easyocr
-        reader = easyocr.Reader(["en"], gpu=False)
+    # EasyOCR imports skimage.io only for reading the image.
+    # Use OpenCV instead so Vercel does not need skimage's .pyi stubs.
+    if "skimage" not in sys.modules:
+        skimage_stub = types.ModuleType("skimage")
+        skimage_stub._path_ = []
+
+        io_stub = types.ModuleType("skimage.io")
+
+        def imread(path):
+            image = cv2.imread(path)
+            if image is None:
+                raise ValueError(f"Could not read image: {path}")
+            return cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+        io_stub.imread = imread
+        skimage_stub.io = io_stub
+
+        sys.modules["skimage"] = skimage_stub
+        sys.modules["skimage.io"] = io_stub
+
+    import easyocr
+    reader = easyocr.Reader(["en"], gpu=False)
 
     return reader
 
