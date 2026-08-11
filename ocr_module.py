@@ -1,11 +1,28 @@
 """
 OCR Module — Semantic AI Based Short Answer Evaluation
 """
-
 import os
+import sys
+import types
+
+# Vercel packaging workaround for scikit-image lazy loading
+try:
+    import lazy_loader
+    original_attach_stub = lazy_loader.attach_stub
+
+    def safe_attach_stub(package_name, filename, *args, **kwargs):
+        try:
+            return original_attach_stub(package_name, filename, *args, **kwargs)
+        except ValueError as e:
+            if "non-existent stub" in str(e):
+                return {}, lambda: [], []
+            raise
+
+    lazy_loader.attach_stub = safe_attach_stub
+except Exception:
+    pass
 
 reader = None
-
 
 def get_reader():
     global reader
