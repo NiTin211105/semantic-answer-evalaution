@@ -99,7 +99,7 @@ def print_full_report(result):
     print("=" * 60)
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     test_image = "sample_images/q1_demo.jpg"
     test_question_id = "Q1"
 
